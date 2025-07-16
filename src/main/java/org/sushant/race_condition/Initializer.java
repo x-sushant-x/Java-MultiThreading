@@ -16,11 +16,10 @@ public class Initializer implements Runnable {
     }
 
     public void testInitialize() {
-        LazyInitialize lazyInitialize = new LazyInitialize();
         Initializer initializer = new Initializer(lazyInitialize);
 
         List<Thread> threads = IntStream.range(0, 1000)
-                .mapToObj(i -> new Thread(initializer))
+                .mapToObj(_ -> new Thread(initializer))
                 .toList();
 
         threads.forEach(Thread::start);
